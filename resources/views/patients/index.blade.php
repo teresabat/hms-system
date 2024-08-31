@@ -18,7 +18,7 @@
         </div>
 
         <!-- Tabela de pacientes -->
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered" style="text-align: center;">
             <thead>
                 <tr>
                     <th>ID</th>
