@@ -12,6 +12,8 @@ Route::get('/', function () {
 Route::resource('patients', PatientController::class);
 Route::resource('appointments', AppointmentController::class);
 Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
+Route::get('/appointments/{id}', [AppointmentController::class, 'show'])->name('appointments.show');
+
 
 
 // Rotas adicionais para exportação de CSV e PDF

@@ -12,10 +12,14 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::with('patient')->get();
-        return view('appointments.index', compact('appointments'));
+        $appointments = Appointment::all()->map(function($appointment) {
+            $appointment->date = \Carbon\Carbon::parse($appointment->date);
+            return $appointment;
+        });
 
+        return view('appointments.index', compact('appointments'));
     }
+    
 
     public function create()
     {
@@ -38,8 +42,12 @@ class AppointmentController extends Controller
 
     public function show(string $id)
     {
-         return view('appointments.show', compact('appointment'));
+    $appointment = Appointment::findOrFail($id);
+    $appointment->appointment_date = \Carbon\Carbon::parse($appointment->appointment_date);
+
+        return view('appointments.show', compact('appointment'));
     }
+
 
     public function edit(string $id)
     {
@@ -49,19 +57,26 @@ class AppointmentController extends Controller
     }
 
 
+
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'patient_id' => 'required|exists:patients,id',
-            'appointment_date' => 'required|date',
-            'description' => 'nullable|string',
-        ]);
+         $request->validate([
+        'patient_id' => 'required|exists:patients,id',  
+        'appointment_date' => 'required|date',
+        'description' => 'nullable|string',
+    ]);
 
-        $appointment = Appointment::findOrFail($id);
-        $appointment->update($request->all());
+    $appointment = Appointment::findOrFail($id);
 
-        return redirect()->route('appointments.index')->with('success', 'Consulta atualizada com sucesso!');
+    $appointment->update([
+        'patient_id' => $request->input('patient_id'),
+        'appointment_date' => $request->input('appointment_date'),
+        'description' => $request->input('description'),
+    ]);
+
+    return redirect()->route('appointments.index')->with('success', 'Consulta atualizada com sucesso!');
     }
+
 
  
     public function destroy(string $id)

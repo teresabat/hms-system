@@ -6,7 +6,7 @@
 
         <a href="{{ route('appointments.create') }}" class="btn btn-primary mb-3">Agendar Consulta</a>
 
-        <table class="table table-striped">
+        <table class="table table-striped" style="text-align: center;">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ $appointment->id }}</td>
                         <td>{{ $appointment->patient->first_name }} {{ $appointment->patient->last_name }}</td>
-                        <td>{{ $appointment->appointment_date->format('d/m/Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d/m/Y H:i') }}</td>
                         <td>{{ $appointment->description }}</td>
                         <td>
                             <a href="{{ route('appointments.show', $appointment->id) }}" class="btn btn-info">Ver</a>

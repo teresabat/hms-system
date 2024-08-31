@@ -12,7 +12,7 @@
             <select id="patient_id" name="patient_id" class="form-select" required>
                 <option value="" disabled selected>Selecione um paciente</option>
                 @foreach ($patients as $patient)
-                    <option value="{{ $patient->id }}">{{ $patient->name }}</option>
+                    <option value="{{ $patient->id }}">{{ $patient->first_name }} {{ $patient->last_name }}</option>
                 @endforeach
             </select>
             @error('patient_id')
@@ -30,13 +30,14 @@
 
         <div class="mb-3">
             <label for="description" class="form-label">Descrição</label>
-            <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+            <input type="text" id="description" name="description" class="form-control" required>
             @error('description')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
 
         <button type="submit" class="btn btn-primary">Agendar</button>
+        <a href="{{ route('appointments.index') }}" class="btn btn-secondary">Voltar</a>
     </form>
 </div>
 @endsection

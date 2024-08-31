@@ -11,9 +11,9 @@ class Appointment extends Model
 
     protected $fillable = [
         'patient_id',
-        'doctor_id',
         'appointment_date',
-        'status',
+        'description',
+        'date'
     ];
 
     public function patient()
@@ -24,5 +24,10 @@ class Appointment extends Model
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);
+    }
+
+    public function getFormattedDateAttribute()
+    {
+        return $this->date->format('d/m/Y');
     }
 }
