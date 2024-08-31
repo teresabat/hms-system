@@ -12,7 +12,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::all()->map(function($appointment) {
+            $appointments = Appointment::all()->map(function($appointment) {
             $appointment->date = \Carbon\Carbon::parse($appointment->date);
             return $appointment;
         });
@@ -24,7 +24,8 @@ class AppointmentController extends Controller
     public function create()
     {
         $patients = \App\Models\Patient::all();
-        return view('appointments.create', compact('patients'));
+        $defaultDate = \Carbon\Carbon::now()->format('d-m-Y\TH:i');
+        return view('appointments.create', compact('patients', 'defaultDate'));
     }
 
     public function store(Request $request)

@@ -22,15 +22,14 @@
             @enderror
         </div>
 
-        <div class="mb-3">
-            <label for="appointment_date" class="form-label">Data e Hora:</label>
-            <input type="datetime-local" id="appointment_date" name="appointment_date" class="form-control" 
-                   value="{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('Y-m-d\TH:i') }}" 
-                   required>
-            @error('appointment_date')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
+       <div class="mb-3">
+          <label for="appointment_date" class="form-label">Data e Hora:</label>
+          <input type="datetime-local" id="appointment_date" name="appointment_date" class="form-control"
+              value="{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('Y-m-d\TH:i') }}" required>
+          @error('appointment_date')
+              <div class="text-danger">{{ $message }}</div>
+          @enderror
+      </div>
 
         <div class="form-group">
             <label for="description">Descrição:</label>

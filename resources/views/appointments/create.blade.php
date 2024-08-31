@@ -20,9 +20,11 @@
             @enderror
         </div>
 
-        <div class="mb-3">
+         <div class="mb-3">
             <label for="appointment_date" class="form-label">Data e Hora</label>
-            <input type="datetime-local" id="appointment_date" name="appointment_date" class="form-control" required>
+            <input type="datetime-local" id="appointment_date" name="appointment_date" class="form-control" 
+                   value="{{ old('appointment_date', $defaultDate) }}" 
+                   required>
             @error('appointment_date')
                 <div class="text-danger">{{ $message }}</div>
             @enderror

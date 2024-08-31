@@ -23,7 +23,7 @@
 
             <div class="form-group">
                 <label for="appointment_date">Data da Consulta</label>
-                <input type="date" name="appointment_date" id="appointment_date" class="form-control" value="{{ old('appointment_date', isset($appointment) ? $appointment->appointment_date->format('Y-m-d') : '') }}" required>
+                <input type="date" name="appointment_date" id="appointment_date" class="form-control" value="{{ old('appointment_date', isset($appointment) ? $appointment->appointment_date->format('d-m-Y') : '') }}" required>
             </div>
 
             <div class="form-group">

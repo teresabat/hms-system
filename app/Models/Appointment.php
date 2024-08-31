@@ -28,6 +28,6 @@ class Appointment extends Model
 
     public function getFormattedDateAttribute()
     {
-        return $this->date->format('d/m/Y');
+        return $this->appointment_date->format('d/m/Y H:i'); // Ajuste o formato para dia/mês/ano
     }
 }
